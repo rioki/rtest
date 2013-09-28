@@ -81,7 +81,7 @@ a penitentially dangerous situation such as:
 The second check would segfault if `values` is empty, but since the first
 check fails, the execution is not precoded beyond this point.
 
-Finally you ma need to setup and cleanup after tests. To do this cou create 
+Finally you may need to setup and cleanup after tests. To do this cou create 
 a fixture like so:
 
     struct DatabaseFixture
