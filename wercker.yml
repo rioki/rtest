@@ -1,0 +1,9 @@
+box: rioki/gcc-cpp
+build:
+  steps:
+    - script:    
+        name: make
+        code: make
+    - script:
+        name: make dist
+        code: make dist
