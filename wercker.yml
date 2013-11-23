@@ -7,3 +7,11 @@ build:
     - script:
         name: make dist
         code: make dist
+deploy:
+  steps:
+    - s3put:
+        key_id: $KEY
+        key_secret: $SECRET
+        bucket_url: $URL
+        source_file: rtest-0.1.0.tar.gz
+        dest_file: rtest/rtest-latest.tar.gz
