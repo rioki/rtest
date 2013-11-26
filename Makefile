@@ -6,9 +6,8 @@ CXX        ?= g++
 CXXFLAGS   += -g -Wall -std=c++0x 
 LDFLAGS    += 
 
-headers     := rtest.h
-srcs        := rtest.cpp
-tests       := check.cpp
+headers     := $(wildcard *.h)
+srcs        := $(wildcard *.cpp)
 extra_dist  := Makefile README.md
 
 ifeq ($(OS),Windows_NT)
@@ -31,8 +30,7 @@ check: rtest-check
 	./rtest-check
 	
 rtest-check: check.o librtest.a	
-	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
-	
+	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@	
 	
 clean:
 	rm -rf librtest.a rtest-check$(EXEEXT) *.o *.d 
@@ -53,9 +51,7 @@ dist:
 	cp $(srcs) $(PACKAGE)-$(VERSION)
 	cp $(extra_dist) $(PACKAGE)-$(VERSION)
 	tar -czvf $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE)-$(VERSION)
-	rm -rf $(PACKAGE)-$(VERSION)
-	
-	
+	rm -rf $(PACKAGE)-$(VERSION)	
 	
 ifneq "$(MAKECMDGOALS)" "clean"
 -include $(patsubst %.cpp, obj/%.d, $(srcs))

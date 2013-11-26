@@ -2,6 +2,8 @@
 Rioki's Test Harness
 ====================
 
+[![wercker status](https://app.wercker.com/status/a541f3ea45cf33f0604bf7c46945b745/m "wercker status")](https://app.wercker.com/project/bykey/a541f3ea45cf33f0604bf7c46945b745)
+
 rtest is aimed to make it darn simple to write unit tests in C++.  
 
 Usage
@@ -114,6 +116,8 @@ As you can see all member and functions in the fixture are available to test.
     
 Install
 -------
+
+Get the bleeding edge version: [rtest-latest.tar.gz](http://files.rioki.org/rtest/rtest-latest.tar.gz)
 
 There are two options, you can either build a static library by simply 
 calling `make` and install the library with `make install`. To influence 
