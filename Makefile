@@ -6,9 +6,16 @@ CXX        ?= g++
 CXXFLAGS   += -g -Wall -std=c++0x 
 LDFLAGS    += 
 
-headers     := $(wildcard *.h)
-srcs        := $(wildcard *.cpp)
+headers     := rtest.h
+srcs        := rtest.cpp
+tests       := check.cpp
 extra_dist  := Makefile README.md
+
+ifeq ($(OS),Windows_NT)
+  EXEEXT=.exe
+else
+  EXEEXT=
+endif
 
 .PHONY: all clean install uninstall
 
@@ -20,8 +27,15 @@ librtest.a: rtest.o
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -MD -c $< -o $@
 
+check: rtest-check
+	./rtest-check
+	
+rtest-check: check.o librtest.a	
+	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@
+	
+	
 clean:
-	rm -rf *.a *.o
+	rm -rf librtest.a rtest-check$(EXEEXT) *.o *.d 
 	
 install: librtest.a
 	mkdir -p $(prefix)/include

@@ -5,6 +5,9 @@ build:
         name: make
         code: make
     - script:
+        name: make check
+        code: make check
+    - script:
         name: make dist
         code: make dist
 deploy:
