@@ -76,14 +76,14 @@ In addition to the check macros any exception during the test will fail the test
 The check macros stop executing the test. So you can use a macro to test
 a penitentially dangerous situation such as:
 
-    std::vector<int> values = /* some cmputation */;
+    std::vector<int> values = /* some computation */;
     CHECK(!values.empty());
     CHECK_EQUAL(23, values[0]);
     
 The second check would segfault if `values` is empty, but since the first
 check fails, the execution is not precoded beyond this point.
 
-Finally you may need to setup and cleanup after tests. To do this cou create 
+Finally you may need to setup and cleanup after tests. To do this you create 
 a fixture like so:
 
     struct DatabaseFixture
