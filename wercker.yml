@@ -9,7 +9,7 @@ build:
         code: make dist
 deploy:
   steps:
-    - s3put:
+    - rioki/s3put:
         key_id: $KEY
         key_secret: $SECRET
         url: s3://files.rioki.org/rtest/rtest-latest.tar.gz
