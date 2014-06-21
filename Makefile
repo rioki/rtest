@@ -10,6 +10,12 @@ headers     := $(wildcard *.h)
 srcs        := $(wildcard *.cpp)
 extra_dist  := Makefile README.md
 
+ifeq ($(OS),Windows_NT)
+  EXEEXT=.exe
+else
+  EXEEXT=
+endif
+
 .PHONY: all clean install uninstall
 
 all: librtest.a
@@ -20,8 +26,14 @@ librtest.a: rtest.o
 %.o : %.cpp
 	$(CXX) $(CXXFLAGS) -MD -c $< -o $@
 
+check: rtest-check
+	./rtest-check
+	
+rtest-check: check.o librtest.a	
+	$(CXX) $(CXXFLAGS) $^ $(LDFLAGS) -o $@	
+	
 clean:
-	rm -rf *.a *.o
+	rm -rf librtest.a rtest-check$(EXEEXT) *.o *.d 
 	
 install: librtest.a
 	mkdir -p $(prefix)/include
@@ -39,9 +51,7 @@ dist:
 	cp $(srcs) $(PACKAGE)-$(VERSION)
 	cp $(extra_dist) $(PACKAGE)-$(VERSION)
 	tar -czvf $(PACKAGE)-$(VERSION).tar.gz $(PACKAGE)-$(VERSION)
-	rm -rf $(PACKAGE)-$(VERSION)
-	
-	
+	rm -rf $(PACKAGE)-$(VERSION)	
 	
 ifneq "$(MAKECMDGOALS)" "clean"
 -include $(patsubst %.cpp, obj/%.d, $(srcs))

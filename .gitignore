@@ -1,3 +1,5 @@
-/*.a
-/*.o
-/*.d
+*.o
+*.d
+librtest.a
+rtest-check
+rtest-check.exe

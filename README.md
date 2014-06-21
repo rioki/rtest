@@ -2,6 +2,8 @@
 Rioki's Test Harness
 ====================
 
+[![wercker status](https://app.wercker.com/status/a541f3ea45cf33f0604bf7c46945b745/m "wercker status")](https://app.wercker.com/project/bykey/a541f3ea45cf33f0604bf7c46945b745)
+
 rtest is aimed to make it darn simple to write unit tests in C++.  
 
 Usage
@@ -74,14 +76,14 @@ In addition to the check macros any exception during the test will fail the test
 The check macros stop executing the test. So you can use a macro to test
 a penitentially dangerous situation such as:
 
-    std::vector<int> values = /* some cmputation */;
+    std::vector<int> values = /* some computation */;
     CHECK(!values.empty());
     CHECK_EQUAL(23, values[0]);
     
 The second check would segfault if `values` is empty, but since the first
 check fails, the execution is not precoded beyond this point.
 
-Finally you may need to setup and cleanup after tests. To do this cou create 
+Finally you may need to setup and cleanup after tests. To do this you create 
 a fixture like so:
 
     struct DatabaseFixture
@@ -114,6 +116,8 @@ As you can see all member and functions in the fixture are available to test.
     
 Install
 -------
+
+Get the bleeding edge version: [rtest-latest.tar.gz](http://files.rioki.org/rtest/rtest-latest.tar.gz)
 
 There are two options, you can either build a static library by simply 
 calling `make` and install the library with `make install`. To influence 
