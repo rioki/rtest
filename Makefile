@@ -3,7 +3,7 @@ PACKAGE     = rtest
 VERSION     = 0.1.0
 prefix     ?= /usr/local
 CXX        ?= g++
-CXXFLAGS   += -g -Wall -std=c++0x 
+CXXFLAGS   += -g -Wall -std=gnu++17
 LDFLAGS    += 
 
 headers     := $(wildcard *.h)
@@ -20,7 +20,7 @@ endif
 
 all: librtest.a
 
-librtest.a: rtest.o
+librtest.a: rtest.o rmock.o
 	ar rcs $@ $^
 	
 %.o : %.cpp
@@ -54,5 +54,5 @@ dist:
 	rm -rf $(PACKAGE)-$(VERSION)	
 	
 ifneq "$(MAKECMDGOALS)" "clean"
--include $(patsubst %.cpp, obj/%.d, $(srcs))
+-include $(patsubst %.cpp, %.d, $(srcs))
 endif

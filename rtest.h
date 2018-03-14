@@ -85,6 +85,8 @@ namespace rtest
                 throw ::rtest::impl::Failure(file, line, buff.str());                         
             }
         }
+
+        void fail(const char* msg, const char* file, unsigned int line);
     }
 }
 
@@ -126,18 +128,8 @@ namespace rtest
 
 #define CHECK_EQUAL(A, B) ::rtest::impl::check_equal(A, B, __FILE__, __LINE__) 
 
-#define CHECK_CLOSE(A, B, EPS) ::rtest::impl::check_close(A, B, EPS, __FILE__, __LINE__) 
+#define CHECK_CLOSE(A, B, EPS) ::rtest::impl::check_close(A, B, EPS, __FILE__, __LINE__)
 
-#define CHECK_THROW(EXPR, OBJ)                                                                     \
-    try                                                                                            \
-    {                                                                                              \
-        EXPR;                                                                                      \
-        throw ::rtest::impl::Failure(__FILE__, __LINE__, "'" #EXPR "' did not throw '" #OBJ "'."); \
-    }                                                                                              \
-    catch (OBJ)                                                                                    \
-    {                                                                                              \
-                                                                                                   \
-    }
-
+#define FAIL(MSG) ::rtest::impl::fail(MSG, __FILE__, __LINE__)
 
 #endif

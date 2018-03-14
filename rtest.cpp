@@ -43,6 +43,7 @@ namespace rtest
         {
             try
             {
+                std::cerr << tests[i]->name << std::endl;
                 tests[i]->run();
             }
             catch (impl::Failure& failure)
@@ -116,6 +117,11 @@ namespace rtest
         void check_equal(const char* a, const std::string& b, const char* file, unsigned int line)
         {
             check_equal(a, b.c_str(), file, line);
+        }
+
+        void fail(const char* msg, const char* file, unsigned int line)
+        {
+            throw ::rtest::impl::Failure(file, line, msg); 
         }
     }
 }
