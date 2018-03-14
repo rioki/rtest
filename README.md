@@ -2,8 +2,6 @@
 Rioki's Test Harness
 ====================
 
-[![wercker status](https://app.wercker.com/status/a541f3ea45cf33f0604bf7c46945b745/m "wercker status")](https://app.wercker.com/project/bykey/a541f3ea45cf33f0604bf7c46945b745)
-
 rtest is aimed to make it darn simple to write unit tests in C++.  
 
 Usage
